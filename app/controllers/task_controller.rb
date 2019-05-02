@@ -19,6 +19,23 @@ class TaskController < ApplicationController
     render layout: 'documentation'
   end
 
+  def single
+    @task = Task.load(@task_name, @task_step)
+
+    @content = ''
+
+    @task.subtasks.each do |t|
+      @content += @task.content_for(t['path'])
+    end
+
+    @content = MarkdownPipeline.new({
+                                      code_language: @code_language,
+                                      current_user: current_user,
+                                    }).call(@content)
+
+    render layout: 'documentation'
+  end
+
   private
 
   def set_navigation
