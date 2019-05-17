@@ -2,6 +2,29 @@
 
 <p>Get started with Nexmo with tutorials that will walk you through building a variety of practical applications</p>
 
+<style>
+  .tutorial-language-link svg {
+    height: 15px;
+    width: 15px;
+  }
+</style>
+
+<div class="Vlt-card Vlt-tabs__header--bordered" data-has-initial-tab="false">
+  <strong>Choose a language: &nbsp;&nbsp;</strong>
+  <li class="Vlt-tabs__link"><a class="tab-link" href="<%= @base_path %>"><svg><use xlink:href="/symbol/volta-icons.svg#Vlt-icon-search"></use></svg><span>Show All</span></a></li>
+  <% @languages.each do |lang| %>
+    <li class="Vlt-tabs__link"><a class="tab-link" href="<%= "#{@base_path}/#{lang.key}" %>"><svg><use xlink:href="/assets/images/brands/<%= lang.icon %>.svg#<%= lang.icon %>"></use></svg><span><%= lang.label %></span></a></li>
+  <% end %>
+</div>
+
+<div class="Vlt-card Vlt-tabs__header--bordered" data-has-initial-tab="false">
+  <strong>Choose a product: &nbsp;&nbsp;</strong>
+  <li class="Vlt-tabs__link"><a class="tab-link" href="/tutorials/<%= @language %>"><svg><use xlink:href="/symbol/volta-icons.svg#Vlt-icon-search"></use></svg><span>Show All</span></a></li>
+  <% @products.each do |product| %>
+    <li class="Vlt-tabs__link"><a class="tab-link" href="/<%= product['path'] %>/tutorials/<%= @language %>"><svg class="Vlt-<%= product['icon_colour'] %>"><use xlink:href="/symbol/volta-icons.svg#Vlt-icon-<%= product['icon'] %>"></use></svgc><span><%= product['name'] %></span></a></li>
+  <% end %>
+</div>
+
 <br>
 
 <%= render 'index' %>
